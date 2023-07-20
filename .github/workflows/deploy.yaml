@@ -28,18 +28,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8.6.6
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          cache: 'yarn'
-          node-version: 20
+          cache: 'pnpm'
+          node-version: 19
 
       - name: Install dependencies
-        run: yarn
+        run: pnpm install
 
       - name: Build
         run: |
-          yarn build
+          npm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
